@@ -53,6 +53,8 @@ public class StudentAttendanceService {
 	 */
 	public List<AttendanceManagementDto> getAttendanceManagement(Integer courseId,
 			Integer lmsUserId) {
+		
+		
 
 		// 勤怠管理リストの取得
 		List<AttendanceManagementDto> attendanceManagementDtoList = tStudentAttendanceMapper
@@ -71,6 +73,31 @@ public class StudentAttendanceService {
 		}
 
 		return attendanceManagementDtoList;
+	}
+	
+	/**
+	 * 過去日の未入力チェック
+	 * 
+	 * @return 未入力日がある場合true、ない場合false
+	 * @throws ParseException
+	 */
+	public Boolean notEnterCheck() throws ParseException {
+
+	    // 今日の日付を取得
+	    Date today = new Date();
+
+	    // 過去日の未入力件数を取得
+	    Integer notEnterCount = tStudentAttendanceMapper.notEnterCount(
+	            loginUserDto.getLmsUserId(),
+	            Constants.DB_FLG_FALSE,
+	            today);
+
+	    // 未入力件数が0より大きければtrue
+	    if (notEnterCount > 0) {
+	        return true;
+	    }
+
+	    return false;
 	}
 
 	/**
