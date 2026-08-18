@@ -83,8 +83,8 @@
 			$("#now").text('現在の時刻は　' + getClock() + '　です。');
 		}, 1000);
 
-		// Task.25 過去日の未入力チェック
-		const notEnterFlg = /*[[${notEnterFlg}]]*/ false;
+		// Task.25 過去日の未入力チェック（alert出す）
+		const notEnterFlg =  false;
 
 		if (notEnterFlg) {
 			alert("過去日の勤怠に未入力があります。");

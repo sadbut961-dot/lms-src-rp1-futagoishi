@@ -86,7 +86,7 @@ public class StudentAttendanceService {
 	    // 今日の日付を取得
 	    Date today = new Date();
 
-	    // 過去日の未入力件数を取得
+	    // 過去日の未入力件数を取得(notEnterCountで作成)
 	    Integer notEnterCount = tStudentAttendanceMapper.notEnterCount(
 	            loginUserDto.getLmsUserId(),
 	            Constants.DB_FLG_FALSE,
