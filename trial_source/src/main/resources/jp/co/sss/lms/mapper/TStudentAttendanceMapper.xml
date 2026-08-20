@@ -44,7 +44,7 @@
 		ORDER BY t2.date ASC
 	</select>
 
-	<!-- Task.25 過去日の未入力件数取得 -->
+	<!-- Task.25 二子石万葉 過去日の未入力件数取得 -->
 	<select id="notEnterCount" resultType="java.lang.Integer">
 		SELECT COUNT(*)
 		FROM t_student_attendance

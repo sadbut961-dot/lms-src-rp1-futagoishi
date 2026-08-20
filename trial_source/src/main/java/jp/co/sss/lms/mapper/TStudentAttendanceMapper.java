@@ -72,6 +72,7 @@ public interface TStudentAttendanceMapper {
 	 * @param deleteFlg
 	 * @param trainingDate
 	 * @return 未入力件数
+	 * @author 二子石万葉 Task.25
 	 */
 	Integer notEnterCount(
 	        @Param("lmsUserId") Integer lmsUserId,
