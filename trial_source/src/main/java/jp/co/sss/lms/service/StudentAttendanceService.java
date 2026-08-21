@@ -415,7 +415,7 @@ public class StudentAttendanceService {
 				attendanceUtil.setBlankTime());
 
 		/*
-		 * Task26
+		 * Task26 二子石万葉
 		 * 出勤・退勤時間のプルダウンで使用する
 		 * 時間と分の選択肢を設定
 		 */
@@ -480,7 +480,7 @@ public class StudentAttendanceService {
 							.getTrainingEndTime());
 
 			/*
-			 * Task26
+			 * Task26 二子石万葉
 			 * 退勤時間を「時」と「分」に分けて設定
 			 */
 			dailyAttendanceForm.setTrainingEndTimeHour(
@@ -543,7 +543,7 @@ public class StudentAttendanceService {
 	}
 
 	/**
-	 * Task26
+	 * Task26 二子石万葉
 	 * 出勤・退勤時間の「時」「分」を
 	 * HH形式へ変換する
 	 *

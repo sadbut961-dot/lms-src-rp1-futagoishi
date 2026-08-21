@@ -193,7 +193,7 @@ public class AttendanceController {
 			throws ParseException {
 
 		/*
-		 * Task26
+		 * Task26 二子石万葉
 		 * 出勤・退勤の「時」「分」を
 		 * hh:mm形式に変換する
 		 */
