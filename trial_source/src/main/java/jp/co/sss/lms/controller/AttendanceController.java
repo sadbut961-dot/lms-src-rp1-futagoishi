@@ -181,6 +181,7 @@ public class AttendanceController {
 	 * @param result
 	 * @return 勤怠管理画面
 	 * @throws ParseException
+	 * 
 	 */
 	@RequestMapping(
 			path = "/update",
@@ -192,11 +193,8 @@ public class AttendanceController {
 			BindingResult result)
 			throws ParseException {
 
-		/*
-		 * Task26 二子石万葉
-		 * 出勤・退勤の「時」「分」を
-		 * hh:mm形式に変換する
-		 */
+		// Task26 二子石万葉 出勤・退勤の「時」「分」をhh:mm形式に変換する
+		
 		studentAttendanceService.formatConversion(attendanceForm);
 
 		// 既存の更新処理
