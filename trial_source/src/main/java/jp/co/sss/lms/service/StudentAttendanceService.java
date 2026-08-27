@@ -96,7 +96,7 @@ public class StudentAttendanceService {
 	}
 
 	/**
-	 * Task.25 二子石万葉
+	 * @author Task.25 二子石万葉
 	 * 過去日の勤怠に未入力があるか確認
 	 *
 	 * @return 過去日に未入力がある場合true

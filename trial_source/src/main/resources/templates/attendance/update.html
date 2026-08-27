@@ -14,7 +14,6 @@
 	</th:block>
 
 	<th:block th:if="${session.loginUserDto.role != '0001'}">
-
 		<h2>
 			勤怠管理
 			<small>( [[${attendanceForm.userName}]] )</small>
@@ -27,12 +26,9 @@
 				</small>
 			</h2>
 		</th:block>
-
 	</th:block>
 
-
 	<div class="row">
-
 		<div class="bs-component col-sm-12">
 
 			<form th:action="@{/attendance/update}" method="post">
@@ -41,10 +37,9 @@
 
 					<table
 						class="table table-hover dataTable no-footer"
-						style="min-width: 1100px;">
+						style="min-width: 1200px;">
 
 						<thead>
-
 							<tr>
 
 								<th class="w140">
@@ -53,6 +48,11 @@
 
 								<th class="w300">
 									コース内容
+								</th>
+
+								<!-- Task28 二子石万葉 定時ボタン -->
+								
+								<th style="width: 80px; min-width: 80px;">
 								</th>
 
 								<th style="width: 150px; min-width: 150px;">
@@ -76,9 +76,7 @@
 								</th>
 
 							</tr>
-
 						</thead>
-
 
 						<tbody>
 
@@ -87,9 +85,7 @@
 
 								<tr>
 
-
 									<!-- hidden -->
-
 									<th:block>
 
 										<input
@@ -124,27 +120,33 @@
 
 									</th:block>
 
-
 									<!-- 日付 -->
-
 									<td class="w140">
-
 										[[${dailyAttendanceForm.dispTrainingDate}]]
-
 									</td>
-
 
 									<!-- コース内容 -->
-
 									<td class="w300">
-
 										[[${dailyAttendanceForm.sectionName}]]
+									</td>
+
+									<!-- Task28 二子石万葉 定時ボタン -->
+									
+									<td
+										style="
+											width: 80px;
+											min-width: 80px;
+											white-space: nowrap;
+										">
+
+										<input
+											type="button"
+											value="定時"
+											class="btn btn-success default-button" />
 
 									</td>
 
-
-									<!-- Task26二子石万葉 出勤時間 -->
-
+									<!-- Task26 二子石万葉 出勤時間 -->
 									<td
 										style="
 											width: 150px;
@@ -187,7 +189,6 @@
 
 											</select>
 
-
 											<span
 												style="
 													display: inline-block;
@@ -196,7 +197,6 @@
 												">
 												：
 											</span>
-
 
 											<select
 												th:name="|attendanceList[${stat.index}].trainingStartTimeMinute|"
@@ -225,9 +225,7 @@
 
 									</td>
 
-
-									<!-- Task26　二子石万葉  退勤時間 -->
-
+									<!-- Task26 二子石万葉 退勤時間 -->
 									<td
 										style="
 											width: 150px;
@@ -270,7 +268,6 @@
 
 											</select>
 
-
 											<span
 												style="
 													display: inline-block;
@@ -279,7 +276,6 @@
 												">
 												：
 											</span>
-
 
 											<select
 												th:name="|attendanceList[${stat.index}].trainingEndTimeMinute|"
@@ -308,9 +304,7 @@
 
 									</td>
 
-
 									<!-- 中抜け時間 -->
-
 									<td class="w80">
 
 										<select
@@ -330,18 +324,12 @@
 
 									</td>
 
-
 									<!-- ステータス -->
-
 									<td class="w70">
-
 										[[${dailyAttendanceForm.statusDispName}]]
-
 									</td>
 
-
 									<!-- 備考 -->
-
 									<td class="w240">
 
 										<input
@@ -362,7 +350,6 @@
 
 				</div>
 
-
 				<div class="form-group">
 
 					<th:block
@@ -371,13 +358,10 @@
 						<a
 							th:href="@{/attendance/detail}"
 							class="btn btn-default">
-
 							戻る
-
 						</a>
 
 					</th:block>
-
 
 					<th:block
 						th:if="${session.loginUserDto.role != '0001'}">
@@ -390,7 +374,6 @@
 
 					</th:block>
 
-
 					<input
 						type="submit"
 						value="更新"
@@ -402,8 +385,83 @@
 			</form>
 
 		</div>
-
 	</div>
+
+
+	<!-- Task28 二子石万葉 定時ボタン押下処理 -->
+	<script>
+
+		document.addEventListener(
+			'DOMContentLoaded',
+			function() {
+
+				const defaultButtons =
+					document.querySelectorAll(
+						'.default-button');
+
+				defaultButtons.forEach(
+					function(button) {
+
+						button.addEventListener(
+							'click',
+							function() {
+
+								/*
+								 * 押下した定時ボタンと
+								 * 同じ行を取得
+								 */
+								const row =
+									this.closest('tr');
+
+								if (row == null) {
+									return;
+								}
+
+								/*
+								 * 出勤時間 09:00
+								 */
+								const startHour =
+									row.querySelector(
+										'select[name$=".trainingStartTimeHour"]');
+
+								const startMinute =
+									row.querySelector(
+										'select[name$=".trainingStartTimeMinute"]');
+
+								if (startHour != null) {
+									startHour.value = '9';
+								}
+
+								if (startMinute != null) {
+									startMinute.value = '0';
+								}
+
+								/*
+								 * 退勤時間 18:00
+								 */
+								const endHour =
+									row.querySelector(
+										'select[name$=".trainingEndTimeHour"]');
+
+								const endMinute =
+									row.querySelector(
+										'select[name$=".trainingEndTimeMinute"]');
+
+								if (endHour != null) {
+									endHour.value = '18';
+								}
+
+								if (endMinute != null) {
+									endMinute.value = '0';
+								}
+
+							});
+
+					});
+
+			});
+
+	</script>
 
 </body>
 
